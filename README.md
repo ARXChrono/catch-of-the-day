@@ -1,5 +1,3 @@
-# catch-of-the-day
-Catch Of The Day - React Project
----
+# Catch Of The Day
 
-Just practicing react.js
+Just practicing some react.js
