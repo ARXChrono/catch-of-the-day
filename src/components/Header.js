@@ -1,23 +1,43 @@
 import React from 'react';
 
-class Header extends React.Component {
-  render() {
-    return(
-      <header className="top">
-        <h1> Catch
-          <span className="ofThe">
-              <span className="of">of</span>
-              <span className="the">The</span>
-          </span>
-        Day
-        </h1>
-        <h3 className="tagline">
-         <span> { this.props.tagline } </span>
-        </h3>
-      </header>
+// Stateless functional Component
+// function Header(props) // without arrow function
+// const Header = ( {tagline, age} ) => ( // can destructure props into own var - then you no longer need props.name
+const Header = props => (
+    <header className="top">
+      <h1> Catch
+        <span className="ofThe">
+            <span className="of">of</span>
+            <span className="the">The</span>
+        </span>
+      Day
+      </h1>
+      <h3 className="tagline">
+       <span> { props.tagline } </span>
+      </h3>
+    </header>
+);
 
-    )
-  }
-}
+// Regular react Component
+
+// class Header extends React.Component {
+//   render() {
+//     return(
+//       <header className="top">
+//         <h1> Catch
+//           <span className="ofThe">
+//               <span className="of">of</span>
+//               <span className="the">The</span>
+//           </span>
+//         Day
+//         </h1>
+//         <h3 className="tagline">
+//          <span> { this.props.tagline } </span>
+//         </h3>
+//       </header>
+//
+//     )
+//   }
+// }
 
 export default Header;
