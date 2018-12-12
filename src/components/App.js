@@ -18,17 +18,31 @@ class App extends React.Component {
     // console.log("Mounted!");
     // sync with url from router
     const { params } = this.props.match;
-    console.log(`${params.storeID}/fishes`);
-    
+    // console.log(`${params.storeID}/fishes`);
+
+    // first reinstate our localStorage
+    const localStorageRef = localStorage.getItem(params.StoreID);
+    if(localStorageRef) {
+      console.log('restoring order state!');
+      this.setState({ order: JSON.parse(localStorageRef)});
+    }
+
     this.ref = base.syncState(`${params.storeID}/fishes`, {
       context: this,
       state: 'fishes'
     });
   }
 
+  componentDidUpdate(){
+    // console.log('it updated!');
+    // console.log(this.state.order);
+    // console.log(JSON.stringify(this.state.order));
+    localStorage.setItem(this.props.match.params.storeID, JSON.stringify(this.state.order));
+  }
+
   componentWillUnmount(){
     // console.log("unmounted!");
-    // base.removeBinding(this.ref);
+    base.removeBinding(this.ref);
   }
 
   addFish = fish => {
