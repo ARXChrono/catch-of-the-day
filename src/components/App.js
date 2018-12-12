@@ -4,7 +4,7 @@ import Inventory from './Inventory';
 import Order from './Order';
 import sampleFishes from '../sample-fishes';
 import Fish from './Fish';
-
+import base from "../base";
 
 
 class App extends React.Component {
@@ -13,6 +13,25 @@ class App extends React.Component {
     fishes: {},
     order: {}
   };
+
+  componentDidMount(){
+    // console.log("Mounted!");
+    // sync with url from router
+    const fishes = { ...this.state.fishes };
+    // i shouldn't have to do this, not sure if its loading on mounted lifecycle.
+    const { params } = this.props.match;
+    console.log(`${params.storeId/fishes}`);
+
+    this.ref = base.syncState(`${params.storeId/fishes}`, {
+      context: this,
+      state: 'fishes'
+    });
+  }
+
+  componentWillUnmount(){
+    // console.log("unmounted!");
+    // base.removeBinding(this.ref);
+  }
 
   addFish = fish => {
 
