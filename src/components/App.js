@@ -17,12 +17,10 @@ class App extends React.Component {
   componentDidMount(){
     // console.log("Mounted!");
     // sync with url from router
-    const fishes = { ...this.state.fishes };
-    // i shouldn't have to do this, not sure if its loading on mounted lifecycle.
     const { params } = this.props.match;
-    console.log(`${params.storeId/fishes}`);
-
-    this.ref = base.syncState(`${params.storeId/fishes}`, {
+    console.log(`${params.storeID}/fishes`);
+    
+    this.ref = base.syncState(`${params.storeID}/fishes`, {
       context: this,
       state: 'fishes'
     });
